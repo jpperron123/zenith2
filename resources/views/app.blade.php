@@ -6,18 +6,48 @@
 
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
-            (function() {
-                const appearance = '{{ $appearance ?? "system" }}';
+(function () {
+  const root = document.documentElement;
 
-                if (appearance === 'system') {
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  function setTheme(theme, persist = true, animate = false) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (animate && !reduce) {
+      root.classList.add('theme-anim');
+      // on déclenche la transition avant de changer la classe
+      requestAnimationFrame(() => {
+        root.classList.toggle('dark', theme === 'dark');
+        if (persist) localStorage.setItem('theme', theme);
+        setTimeout(() => root.classList.remove('theme-anim'), 260);
+      });
+    } else {
+      root.classList.toggle('dark', theme === 'dark');
+      if (persist) localStorage.setItem('theme', theme);
+    }
+  }
 
-                    if (prefersDark) {
-                        document.documentElement.classList.add('dark');
-                    }
-                }
-            })();
-        </script>
+  // on expose la fonction pour ton composant Vue
+  window.__setTheme = setTheme;
+
+  const appearance = '{{ $appearance ?? "system" }}';
+  const saved = localStorage.getItem('theme');
+
+  if (saved) {
+    setTheme(saved, false, false); // pas d’anim au premier paint
+  } else if (appearance === 'system') {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(prefersDark ? 'dark' : 'light', false, false);
+
+    // suivre le changement système si l’utilisateur n’a pas choisi
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    mq.addEventListener?.('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light', false, false);
+      }
+    });
+  }
+})();
+</script>
+
 
         {{-- Inline style to set the HTML background color based on our theme in app.css --}}
         <style>
