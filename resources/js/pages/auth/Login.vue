@@ -32,10 +32,8 @@ const props = defineProps<{
 
     <ThemeToggle />
 
-    <!-- Fond global basé sur --background / --foreground -->
     <div class="relative min-h-screen bg-background text-foreground">
         <div class="flex min-h-screen flex-col items-center justify-center px-6 py-8 lg:py-0">
-            <!-- Carte: couleurs via --card / --card-foreground + bordure -->
             <div class="w-full rounded-lg border border-border bg-card p-6 text-card-foreground shadow sm:max-w-md md:mt-0 lg:p-8">
                 <h1 class="mb-4 text-center text-2xl leading-tight font-bold tracking-tight text-foreground">Zenith</h1>
                 <p class="mb-6 text-center text-muted-foreground">Your progress one day at a time.</p>
@@ -96,7 +94,6 @@ const props = defineProps<{
                                 </Label>
                             </div>
 
-                            <!-- Bouton: --primary / --primary-foreground / --ring -->
                             <Button
                                 type="submit"
                                 class="flex cursor-pointer items-center justify-center rounded-lg bg-primary px-4 py-2 text-primary-foreground hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
