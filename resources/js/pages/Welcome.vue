@@ -4,7 +4,6 @@ import InputError from '@/components/InputError.vue';
 import TextLink from '@/components/TextLink.vue';
 import ThemeToggle from '@/components/ThemeToggle.vue';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { register } from '@/routes';
@@ -83,7 +82,7 @@ const props = defineProps<{
                                 <InputError :message="errors.password" />
                             </div>
 
-                            <div class="flex items-center justify-between">
+                            <!-- <div class="flex items-center justify-between">
                                 <Label for="remember" class="flex items-center gap-2 text-foreground">
                                     <Checkbox
                                         id="remember"
@@ -93,7 +92,7 @@ const props = defineProps<{
                                     />
                                     <span class="cursor-pointer">Remember me</span>
                                 </Label>
-                            </div>
+                            </div> -->
 
                             <!-- Bouton: --primary / --primary-foreground / --ring -->
                             <Button
