@@ -30,15 +30,14 @@ const props = defineProps<{
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     </Head>
 
-    <ThemeToggle />
-
     <!-- Fond global basé sur --background / --foreground -->
     <div class="relative min-h-screen bg-background text-foreground">
+        <ThemeToggle />
         <div class="flex min-h-screen flex-col items-center justify-center px-6 py-8 lg:py-0">
             <!-- Carte: couleurs via --card / --card-foreground + bordure -->
             <div class="w-full rounded-lg border border-border bg-card p-6 text-card-foreground shadow sm:max-w-md md:mt-0 lg:p-8">
                 <h1 class="mb-4 text-center text-2xl leading-tight font-bold tracking-tight text-foreground">Zenith</h1>
-                <p class="mb-6 text-center text-muted-foreground">Please log in or register to continue.</p>
+                <p class="mb-6 text-center text-muted-foreground">Your progress one day at a time.</p>
 
                 <div class="flex flex-col gap-4">
                     <Form
