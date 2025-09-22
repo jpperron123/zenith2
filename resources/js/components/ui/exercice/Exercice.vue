@@ -36,11 +36,10 @@ function handleClick() {
 <template>
 	
 	<div class="border-2 p-1 bg-black flex flex-col items-center justify-center h-full w-full">
-		<Button @click="step = 0" class="mt-2 cursor-pointer bg-red-800 hover:bg-green-800">RESET</Button>
-		<Button v-if="step === 0" @click="handleClick" class="mt-2 cursor-pointer">Add an exercice</Button>
-		<Button v-else-if="step === 1" @click="handleClick" class="mt-2 cursor-pointer">Muscle ciblé</Button>
+		<Button v-if="step === 1" @click="handleClick" class="mt-2 cursor-pointer">Muscle ciblé</Button>
 		<Button v-else-if="step === 2" @click="handleClick" class="mt-2 cursor-pointer">Exercice</Button>
 		<Button v-else-if="step === 3" @click="handleClick" class="mt-2 cursor-pointer">Nombre de séries + rep/chrono</Button>
-		<Button v-else-if="step === 4" @click="handleClick" class="mt-2 cursor-pointer">Exercice complete avec possibilité de edit</Button>
+		<Button v-else-if="step === 4" @click="step = 0" class="mt-2 cursor-pointer">Exercice complete avec possibilité de edit</Button>
+		<Button v-else @click="handleClick" class="mt-2 cursor-pointer">Add an exercice</Button>
 	</div>
 </template>
